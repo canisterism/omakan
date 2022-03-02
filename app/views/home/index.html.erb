@@ -1,16 +1,15 @@
 <h1>Welcome to おま環.com</h1>
-<%= form_with url: 'google', method: :get, local: true, id: 'form' do |form| %>
+<%= form_with url: '', method: :get, local: true, id: 'form' do |form| %>
   <div>ダウンしているか知りたいドメイン名を入力してください。</div>
-  <%= form.text_field :domain, placeholder: "google.com"%>
-  <%= form.submit "Search" %>
-
+  <input id="domain" placeholder="google.com"/>
+  <%= form.submit "Search", name: nil %>
 <% end %>
 
 <script>
 const domainInput = document.querySelector('#domain');
 
 domainInput.addEventListener('change', (event) => {
-  const form = document.querySelector('#form');
-  form.action = domainInput.value
+  document.querySelector('#form');
+  form.action = `/search/${domainInput.value}`
 });
 </script>
