@@ -2,8 +2,13 @@ class HomeController < ApplicationController
   def index; end
 
   def search
-    status = DomainClient.new(requested_domain).request_status
-    render json: { status: }
+    responses = DomainHealthCheck::Client.new(requested_domain).check
+    render json: { responses: }
+  rescue DomainHealthCheck::DomainNotFound
+    render json: {
+      error: 'DomainNotFound',
+      message: 'ドメインが見つかりませんでした。存在しないドメインかもしれません...'
+    }
   end
 
   private
