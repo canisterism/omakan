@@ -3,7 +3,7 @@ module DomainHealthCheck
     def initialize(domain)
       @response_list = []
       @domain = domain
-      @client = Faraday.new("https://#{@domain}/hoge") do |f|
+      @client = Faraday.new("https://#{@domain}") do |f|
         f.request :retry
         f.response :logger
         # TODO(canisterism): 401の時listが更新されていない
