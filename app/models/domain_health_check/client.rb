@@ -19,7 +19,6 @@ module DomainHealthCheck
       @response_list
     rescue Faraday::ClientError => e
       Rails.logger.error("Faraday::ClientError: #{e}")
-      debugger
     rescue Faraday::ServerError => e
       Rails.logger.error("Faraday::ServerError: #{e}")
     rescue Faraday::ConnectionFailed => e # ドメインが存在しないケース

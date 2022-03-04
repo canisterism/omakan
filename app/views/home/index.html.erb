@@ -1,15 +1,7 @@
 <h1>Welcome to おま環.com</h1>
-<%= form_with url: '', method: :get, local: true, id: 'form' do |form| %>
-  <div>ダウンしているか知りたいドメイン名を入力してください。</div>
-  <input id="domain" placeholder="google.com"/>
-  <%= form.submit "Search", name: nil %>
+
+<%= form_with url: '', method: :get,  local: true, id: 'form', data: {'controller': "index"} do |form| %>
+<div>ダウンしているか知りたいドメイン名を入力してください。</div>
+<input id="domain" placeholder="google.com" data-action="index#update" />
+<%= form.submit "Search", name: nil %>
 <% end %>
-
-<script>
-const domainInput = document.querySelector('#domain');
-
-domainInput.addEventListener('change', (event) => {
-  document.querySelector('#form');
-  form.action = `/search/${domainInput.value}`
-});
-</script>
